@@ -6,7 +6,7 @@ option(WITH_GTEST "Whether to build Gtest test" ON)
 
 find_package(Boost COMPONENTS program_options system REQUIRED)
 
-add_executable(bayan
+add_executable(BayanPro
     main.cpp
     cmd_line_parser.h
     cmd_line_parser.cpp
@@ -23,9 +23,9 @@ add_executable(bayan
     bayan/hash_md5.h
     )
 
-set_property(TARGET bayan PROPERTY CXX_STANDARD 17)
+set_property(TARGET BayanPro PROPERTY CXX_STANDARD 17)
 
-target_link_libraries(bayan ${Boost_LIBRARIES})
+target_link_libraries(BayanPro ${Boost_LIBRARIES})
 
 if(WITH_GTEST)
     include(FetchContent)
