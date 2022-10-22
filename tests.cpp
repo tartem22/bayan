@@ -9,9 +9,9 @@ TEST(duplicate_finder, test_src32)
 
     std::vector<std::string> settings;
     settings.emplace_back("-i");
-    settings.emplace_back("../test_data");
+    settings.emplace_back("/test_data");
     settings.emplace_back("-e");
-    settings.emplace_back("../test_data/test_data_2/test_data_22");
+    settings.emplace_back("/test_data/test_data_2/test_data_22");
     settings.emplace_back("-l");
     settings.emplace_back("4");
     settings.emplace_back("-s");
@@ -54,9 +54,9 @@ TEST(duplicate_finder, test_md5)
 
     std::vector<std::string> settings;
     settings.emplace_back("-i");
-    settings.emplace_back("../test_data");
+    settings.emplace_back("/test_data");
     settings.emplace_back("-e");
-    settings.emplace_back("../test_data/test_data_2/test_data_22");
+    settings.emplace_back("/test_data/test_data_2/test_data_22");
     settings.emplace_back("-l");
     settings.emplace_back("4");
     settings.emplace_back("-s");
