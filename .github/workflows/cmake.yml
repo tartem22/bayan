@@ -17,10 +17,10 @@ jobs:
           submodules: true
       - run: sudo apt-get install libboost-all-dev
       - run: cmake . -DPATCH_VERSION=${{ github.run_number }} -DWITH_GTEST=ON
-      - run: cmake --build .
-      - run: cmake --build . --target tests
-      - run: cmake --build . --target package
-      - run: ./tests
+      - run: cmake -S . -B ./build
+      - run: cmake --build ./build --target tests
+      - run: cmake --build ./build --target package
+      - run: ./build/tests
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -38,6 +38,6 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./BayanPro-0.0.${{ github.run_number }}-Linux.deb
-          asset_name: ./BayanPro-0.0.${{ github.run_number }}-Linux.deb
+          asset_path: ./Bayan-0.0.${{ github.run_number }}-Linux.deb
+          asset_name: ./Bayan-0.0.${{ github.run_number }}-Linux.deb
           asset_content_type: application/vnd.debian.binary-package
