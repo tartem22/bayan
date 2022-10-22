@@ -4,6 +4,8 @@
 #include <memory>
 
 #include "bayan.h"
+#include "hash_crc32.h"
+#include "hash_md5.h"
 
 namespace bayan
 {
@@ -12,7 +14,12 @@ namespace bayan
     public:
         std::shared_ptr<Bayan> create()
         {
-            return std::make_shared<Bayan>(settings);
+            if (settings.hash == "crc32")
+                return std::shared_ptr<Bayan>(new BayanImpl<hash::Crc32>(settings));
+            if (settings.hash == "md5")
+                return std::shared_ptr<Bayan>(new BayanImpl<hash::Md5>(settings));
+
+            return std::shared_ptr<Bayan>(new BayanImpl<hash::Crc32>(settings));
         }
 
         void setIncludedDirectories(const std::vector<std::string> &dirs)

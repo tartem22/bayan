@@ -15,8 +15,12 @@ add_executable(bayan
     bayan/bayan.cpp
     bayan/bayan.h
     bayan/factory.h
-    bayan/file.cpp
     bayan/file.h
+    bayan/hash.h
+    bayan/hash_crc32.cpp
+    bayan/hash_crc32.h
+    bayan/hash_md5.cpp
+    bayan/hash_md5.h
     )
 
 set_property(TARGET bayan PROPERTY CXX_STANDARD 17)
@@ -27,7 +31,8 @@ if(WITH_GTEST)
     include(FetchContent)
     FetchContent_Declare(
     googletest
-    URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
+    GIT_REPOSITORY https://github.com/google/googletest.git
+    GIT_TAG release-1.12.1
     )
     # For Windows: Prevent overriding the parent project's compiler/linker settings
     set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
@@ -41,8 +46,12 @@ if(WITH_GTEST)
                     bayan/bayan.cpp
                     bayan/bayan.h
                     bayan/factory.h
-                    bayan/file.cpp
-                    bayan/file.h)
+                    bayan/file.h
+                    bayan/hash.h
+                    bayan/hash_crc32.cpp
+                    bayan/hash_crc32.h
+                    bayan/hash_md5.cpp
+                    bayan/hash_md5.h)
 
     set_target_properties(tests PROPERTIES
         CXX_STANDARD 17
