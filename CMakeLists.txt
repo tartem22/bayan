@@ -1,6 +1,9 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.2)
 
-project(Bayan)
+set(PATCH_VERSION "1" CACHE INTERNAL "Patch version")
+set(PROJECT_VESRION 0.0.${PATCH_VERSION})
+
+project(Bayan VERSION ${PROJECT_VESRION})
 
 option(WITH_GTEST "Whether to build Gtest test" ON)
 
