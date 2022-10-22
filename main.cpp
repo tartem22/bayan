@@ -24,8 +24,8 @@ void test_crc32()
     settings.emplace_back("crc32");
 
     int argc = settings.size() + 1;
-    const char * argv[settings.size()];
-    for(int i = 1; i <= settings.size(); i++)
+    const char *argv[settings.size()];
+    for (int i = 1; i <= settings.size(); i++)
     {
         argv[i] = settings.at(i - 1).c_str();
     }
@@ -36,9 +36,9 @@ void test_crc32()
 
     bayan::EqualFileNames duplicates = duplicateFinder->find();
 
-    for(const auto &dupl : duplicates)
+    for (const auto &dupl : duplicates)
     {
-        for(const auto &e : dupl)
+        for (const auto &e : dupl)
         {
             std::cout << e << "\t";
         }
@@ -67,8 +67,8 @@ void test_md5()
     settings.emplace_back("md5");
 
     int argc = settings.size() + 1;
-    const char * argv[settings.size()];
-    for(int i = 1; i <= settings.size(); i++)
+    const char *argv[settings.size()];
+    for (int i = 1; i <= settings.size(); i++)
     {
         argv[i] = settings.at(i - 1).c_str();
     }
@@ -79,9 +79,29 @@ void test_md5()
 
     bayan::EqualFileNames duplicates = duplicateFinder->find();
 
-    for(const auto &dupl : duplicates)
+    for (const auto &dupl : duplicates)
     {
-        for(const auto &e : dupl)
+        for (const auto &e : dupl)
+        {
+            std::cout << e << "\t";
+        }
+        std::cout << std::endl;
+    }
+}
+
+void workflow(int argc, const char *argv[])
+{
+    bayan::BayanFatory factory;
+
+    cmd_parser::parse(argc, argv, &factory);
+
+    std::shared_ptr<bayan::Bayan> duplicateFinder = factory.create();
+
+    bayan::EqualFileNames duplicates = duplicateFinder->find();
+
+    for (const auto &dupl : duplicates)
+    {
+        for (const auto &e : dupl)
         {
             std::cout << e << "\t";
         }
@@ -91,6 +111,14 @@ void test_md5()
 
 int main(int argc, const char *argv[])
 {
-    test_md5();
+    try
+    {
+        workflow(argc, argv);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
     return 0;
 }
