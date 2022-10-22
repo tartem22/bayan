@@ -16,8 +16,7 @@ jobs:
         with:
           submodules: true
       - run: sudo apt-get install libboost-all-dev
-      - run: cmake . -DPATCH_VERSION=${{ github.run_number }} -DWITH_GTEST=ON
-      - run: cmake -S . -B ./build
+      - run: cmake -S . -B ./build -DPATCH_VERSION=${{ github.run_number }} -DWITH_GTEST=ON
       - run: cmake --build ./build --target tests
       - run: cmake --build ./build --target package
       - run: ./build/tests
